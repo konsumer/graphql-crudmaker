@@ -1,0 +1,38 @@
+{
+  "name": "graphql-crudmaker",
+  "version": "0.0.0",
+  "description": "Simple, database-agnostic CRUD graphql schema & resolver generation",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build/"
+  },
+  "bin": {
+    "graphql-crudmaker": "build/graphql-crudmaker.js"
+  },
+  "files": [
+    "build/",
+    "README.md"
+  ],
+  "keywords": [
+    "graphql",
+    "crud"
+  ],
+  "author": "David Konsumer <konsumer@jetboystudio.com> (http://konsumer.js.org)",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "env",
+      "stage-3"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1"
+  },
+  "dependencies": {
+    "graphql": "^0.13.2",
+    "pluralize": "^7.0.0",
+    "yargs": "^11.0.0"
+  }
+}
