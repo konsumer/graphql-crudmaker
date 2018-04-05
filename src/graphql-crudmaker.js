@@ -36,8 +36,22 @@ yargs
       console.log(out)
     }
   })
-  .command('mock <TYPE_NAME> <DEFINITION_FILE>', 'Generate a mock CRUD GraphQL resolver', yargs => {}, argv => {})
-  .command('stub <TYPE_NAME> <DEFINITION_FILE>', 'Generate a stub set of CRUD GraphQL resolvers', yargs => {}, argv => {})
+  .command('mock <TYPE_NAME> <DEFINITION_FILE>', 'Generate a mock CRUD GraphQL resolver', yargs => {}, argv => {
+    const out = tMock(getVars(argv.TYPE_NAME, argv.DEFINITION_FILE))
+    if (argv.out) {
+      writeFileSync(argv.out, out)
+    } else {
+      console.log(out)
+    }
+  })
+  .command('stub <TYPE_NAME> <DEFINITION_FILE>', 'Generate a stub set of CRUD GraphQL resolvers', yargs => {}, argv => {
+    const out = tServer(getVars(argv.TYPE_NAME, argv.DEFINITION_FILE))
+    if (argv.out) {
+      writeFileSync(argv.out, out)
+    } else {
+      console.log(out)
+    }
+  })
   .option('out', { alias: 'o', description: 'The output file. If omitted, will be stdout.' })
   .wrap(0)
   .demandCommand()
