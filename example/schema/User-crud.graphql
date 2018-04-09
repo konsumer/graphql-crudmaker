@@ -1,0 +1,102 @@
+# auto-generated on Mon Apr 09 2018 15:36:40 GMT-0700 (PDT)
+
+# Shared: direction for a sort.
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# Shared: a filter-type for strings
+input StringFilter {
+  EQ: String
+  GT: String
+  GTE: String
+  IN: [String]
+  LT: String
+  LTE: String
+  NEQ: String
+  NIN: [String]
+}
+
+# Shared: a filter-type for ints
+input IntFilter {
+  EQ: Int
+  GT: Int
+  GTE: Int
+  IN: [Int]
+  LT: Int
+  LTE: Int
+  NEQ: Int
+  NIN: [Int]
+}
+
+# Shared: a filter-type for floats
+input FloatFilter {
+  EQ: Float
+  GT: Float
+  GTE: Float
+  IN: [Float]
+  LT: Float
+  LTE: Float
+  NEQ: Float
+  NIN: [Float]
+}
+
+# Shared: a filter-type for booleans
+input BooleanFilter {
+  EQ: Boolean
+  NEQ: Boolean
+}
+
+# a field from User
+enum UserField {
+  id
+  email
+  name
+}
+
+# a filter for UserName
+input UserNameFilter {
+  first: StringFilter
+  last: StringFilter
+}
+
+# a filter for User
+input UserFilter {
+  id: StringFilter
+  email: StringFilter
+  name: UserNameFilter
+}
+
+# an input type for UserName
+input UserNameInput {
+  first: String
+  last: String
+}
+
+# an input type for User
+input UserInput {
+  email: String
+  name: UserNameInput
+}
+
+type Query {
+  # Get a single User.
+  getUser(id: ID!): User
+  
+  # Get a list of Users.
+  listUsers(filter: UserFilter, sort: SortOrder = ASC, sortBy: UserField): [User]
+}
+
+type Mutation {
+  # Delete a User.
+  deleteUser(id: ID!): Boolean
+  
+  # Update an existing User.
+  updateUser(id: ID!, record: UserInput!): User
+  
+  # Create a new User.
+  createUser(record: UserInput!): User
+}
+
+

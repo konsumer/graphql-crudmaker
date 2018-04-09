@@ -7,9 +7,8 @@ import { readFileSync, writeFileSync } from 'fs'
 import { parse } from 'graphql'
 import yargs from 'yargs'
 
-import tServer from './templates/server'
+import tStub from './templates/stub'
 import tGraphql from './templates/graphql'
-import tMock from './templates/mock'
 
 const getVars = (name, def) => {
   const typeDefs = readFileSync(def).toString()
@@ -36,16 +35,8 @@ yargs
       console.log(out)
     }
   })
-  .command('mock <TYPE_NAME> <DEFINITION_FILE>', 'Generate a mock CRUD GraphQL resolver', yargs => {}, argv => {
-    const out = tMock(getVars(argv.TYPE_NAME, argv.DEFINITION_FILE))
-    if (argv.out) {
-      writeFileSync(argv.out, out)
-    } else {
-      console.log(out)
-    }
-  })
   .command('stub <TYPE_NAME> <DEFINITION_FILE>', 'Generate a stub set of CRUD GraphQL resolvers', yargs => {}, argv => {
-    const out = tServer(getVars(argv.TYPE_NAME, argv.DEFINITION_FILE))
+    const out = tStub(getVars(argv.TYPE_NAME, argv.DEFINITION_FILE))
     if (argv.out) {
       writeFileSync(argv.out, out)
     } else {

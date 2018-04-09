@@ -1,10 +1,10 @@
 type UserName {
-  first: String
+  first: String!
   last: String
 }
 
 type User {
   id: ID!
   email: String!
-  name: UserName
+  name: UserName!
 }
